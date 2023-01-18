@@ -1,0 +1,202 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+
+local Window = Rayfield:CreateWindow({
+	Name = "NoMoreLife#6829",
+	LoadingTitle = "NoMoreLife#6829",
+	LoadingSubtitle = "by NoMoreLife#6829",
+	ConfigurationSaving = {
+		Enabled = true,
+		FolderName = nil,
+		FileName = "NoMoreLife#6829"
+	},
+	KeySystem = true, 
+	KeySettings = {
+		Title = "NoMoreLife Hub",
+		Subtitle = "Key System",
+		Note = "Join the discord (discord.gg/fNcmQqP37t)",
+		FileName = "NoMoreLife Key",
+		SaveKey = true,
+		GrabKeyFromSite = false,
+		Key = "NoMoreLife6327"
+	}
+})
+aimbot=false
+UserInputService=game:GetService('UserInputService')
+player=game.Players.LocalPlayer
+mouse=game.Players.LocalPlayer:GetMouse()
+camera=game.Workspace.CurrentCamera
+--INFJUMP
+local Player = game:GetService'Players'.LocalPlayer;
+local UIS = game:GetService'UserInputService';
+_G.JumpHeight = 50;
+ 
+function Action(Object, Function) if Object ~= nil then Function(Object); end end
+ 
+UIS.InputBegan:connect(function(UserInput)
+    if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
+        Action(Player.Character.Humanoid, function(self)
+            if self:GetState() == Enum.HumanoidStateType.Jumping or self:GetState() == Enum.HumanoidStateType.Freefall then
+                Action(self.Parent.HumanoidRootPart, function(self)
+                    self.Velocity = Vector3.new(0, _G.JumpHeight, 0);
+                end)
+            end
+        end)
+    end
+end)
+-- AIMBOT
+local function getClosest()
+	local closestPlayer=nil
+	local closesDist=math.huge
+	if not player.Team then
+		team=1
+	else
+		team=player.Team
+	end
+	for i,v in pairs(game.Players:GetChildren()) do
+		if v.team~=team and v~=player then
+			local Dist=(game.Players.LocalPlayer.Character.HumanoidRootPart.Position-v.Character.HumanoidRootPart.Position).magnitude
+			if Dist<closesDist then
+				closesDist=Dist
+				closestPlayer=v
+			end
+		end
+	end
+	return closestPlayer
+end
+UserInputService.InputBegan:Connect(function(inp)
+    if aimbot and inp.UserInputType==Enum.UserInputType.MouseButton2 then
+    	aim=true
+  	 	while aim and wait() do
+  			camera.CFrame=CFrame.new(camera.CFrame.Position, getClosest().Character.Head.Position)
+  	  	end
+	end
+end)
+UserInputService.InputEnded:Connect(function(inp)
+    if inp.UserInputType==Enum.UserInputType.MouseButton2 then
+	    aim=false
+    end
+end)
+--Esp Settings
+local ESPSettings = { PlayerESP = { Enabled = false, TracersOn = false, BoxesOn = false, NamesOn = false, DistanceOn = false, HealthOn = false, ToolOn = false, FaceCamOn = false, Distance = 2000 }, ScrapESP = { Enabled = false, Distance = 2000, LegendaryOnly = true, RareOnly = true, GoodOnly = true, BadOnly = true }, SafeESP = { Enabled = false, Distance = 2000, BigOnly = true, SmallOnly = true }, RegisterESP = { Enabled = false, Distance = 2000 }, ESPColor = Color3.fromRGB(255, 255, 255), ToolColor = Color3.fromRGB(255, 255, 255)};
+local ESPFramework = loadstring(game:HttpGet("https://raw.githubusercontent.com/NougatBitz/Femware-Leak/main/ESP.lua", true))()
+--Tab and Section
+local Tab = Window:CreateTab("Esp", 4483362458)
+local Section = Tab:CreateSection("Esp")
+local Tab1 = Window:CreateTab("Aim")
+local Section = Tab1:CreateSection("Aim")
+local Tab2 = Window:CreateTab("miscellaneous")
+local Section = Tab2:CreateSection("miscellaneous")
+--Toggle and Button
+local Toggle = Tab:CreateToggle({
+	Name = "Enable Esp",
+	CurrentValue = false,
+	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+        ESPSettings.PlayerESP.Enabled = Value
+
+    ESPFramework.Color = ESPSettings.ESPColor
+    ESPFramework.ToolColor = ESPSettings.ToolColor
+    ESPFramework.Tracers = ESPSettings.PlayerESP.TracersOn
+    ESPFramework.Names = ESPSettings.PlayerESP.NamesOn
+    ESPFramework.Boxes = ESPSettings.PlayerESP.BoxesOn
+    ESPFramework:Toggle(ESPSettings.PlayerESP.Enabled)
+	end,
+})
+local Toggle = Tab:CreateToggle({
+	Name = "Box Esp",
+	CurrentValue = false,
+	Flag = "Toggle2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+        ESPSettings.PlayerESP.BoxesOn = Value
+        ESPFramework.Boxes = ESPSettings.PlayerESP.BoxesOn
+	end,
+})
+local Toggle = Tab:CreateToggle({
+	Name = "Tracer ESP",
+	CurrentValue = false,
+	Flag = "Toggle3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+	    ESPSettings.PlayerESP.TracersOn = Value
+    ESPFramework.Tracers = ESPSettings.PlayerESP.TracersOn
+	end,
+})
+local Toggle = Tab:CreateToggle({
+	Name = "Name ESP",
+	CurrentValue = false,
+	Flag = "Toggle4", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+        ESPSettings.PlayerESP.NamesOn = Value
+        ESPFramework.Names = ESPSettings.PlayerESP.NamesOn
+	end,
+})
+local Button = Tab1:CreateButton({
+	Name = "Big Hitbox",
+	Callback = function()
+	function getplrsname()
+for i,v in pairs(game:GetChildren()) do
+if v.ClassName == "Players" then
+return v.Name
+end
+end
+end
+local players = getplrsname()
+local plr = game[players].LocalPlayer
+coroutine.resume(coroutine.create(function()
+while  wait(1) do
+coroutine.resume(coroutine.create(function()
+for _,v in pairs(game[players]:GetPlayers()) do
+if v.Name ~= plr.Name and v.Character then
+v.Character.RightUpperLeg.CanCollide = false
+v.Character.RightUpperLeg.Transparency = 10
+v.Character.RightUpperLeg.Size = Vector3.new(13,13,13)
+
+v.Character.LeftUpperLeg.CanCollide = false
+v.Character.LeftUpperLeg.Transparency = 10
+v.Character.LeftUpperLeg.Size = Vector3.new(13,13,13)
+
+v.Character.HeadHB.CanCollide = false
+v.Character.HeadHB.Transparency = 10
+v.Character.HeadHB.Size = Vector3.new(13,13,13)
+
+v.Character.HumanoidRootPart.CanCollide = false
+v.Character.HumanoidRootPart.Transparency = 10
+v.Character.HumanoidRootPart.Size = Vector3.new(13,13,13)
+
+end
+end
+end))
+end
+end))
+
+
+   end,
+})
+
+local Toggle = Tab1:CreateToggle({
+	Name = "AimBot",
+	CurrentValue = false,
+	Flag = "Toggle5", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(state)
+		aimbot=state
+	end,
+})
+local Button = Tab2:CreateButton({
+	Name = "InfJump",
+	Callback = function()
+
+local function TKDWQ_fake_script() -- INFJUMP.LocalScript 
+local script = Instance.new('LocalScript', INFJUMP)
+
+function zigzag(X) return math.acos(math.cos(X*math.pi))/math.pi end
+
+counter = 0
+
+while wait(0.1)do
+script.Parent.BackgroundColor3 = Color3.fromHSV(zigzag(counter),1,1)
+ 
+counter = counter + 0.01
+end
+end
+coroutine.wrap(TKDWQ_fake_script)()
+	end,
+})
