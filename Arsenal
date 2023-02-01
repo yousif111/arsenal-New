@@ -616,12 +616,8 @@ CombatTabMainSection:Toggle("Wallbang Dont Use It (Still Not Working)",function(
 )
 
 end)
-CombatTabMainSection:Toggle("Triggerbot Dont Use It ( Still Not Working)",function(x)
-    if x then
-            ArsoniaTable.Aimbot.Silentaim.AutoshootMethod="Force Fire"
-    else
-            ArsoniaTable.Aimbot.Silentaim.AutoshootMethod="None"
-    end
+CombatTabMainSection:Toggle("invisible",function(x)
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/Cesare0328/my-scripts/main/arsenal%20inv.lua'),true))()
     end)
 CombatTabMainSection:Toggle("Enable/Disable FOV",function(x)
     ArsoniaTable.Aimbot.Silentaim.Ignorefov=x
