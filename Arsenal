@@ -616,7 +616,7 @@ CombatTabMainSection:Toggle("Wallbang Dont Use It (Still Not Working)",function(
 )
 
 end)
-CombatTabMainSection:Toggle("invisible",function(x)
+CombatTabMainSection:Toggle("invisible use in game not in lobby",function(x)
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/Cesare0328/my-scripts/main/arsenal%20inv.lua'),true))()
     end)
 CombatTabMainSection:Toggle("Enable/Disable FOV",function(x)
